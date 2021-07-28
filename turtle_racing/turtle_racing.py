@@ -1,6 +1,6 @@
 import turtle
-import random
 import time
+import random
 
 WIDTH, HEIGHT = 600, 600
 color_list = ["red", "blue", "yellow", "cyan", "purple",
