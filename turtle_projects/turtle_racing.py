@@ -1,5 +1,4 @@
 import turtle
-import time
 import random
 
 WIDTH, HEIGHT = 600, 600
@@ -7,10 +6,19 @@ color_list = ["red", "blue", "yellow", "cyan", "purple",
               "green", "black", "brown", "orange", "pink"]
 
 
+def init_turtle():
+    global screen
+    screen = turtle.Screen()
+    screen.setup(WIDTH, HEIGHT)
+    screen.title("Racing Turtle")
+    screen.colormode(255)
+
+
 def get_number_of_racers():
     racers = 0
     while True:
-        racers = input("Enter the number of racers (2 - 10) : ")
+        racers = screen.textinput(
+            title="Racin Turtle", prompt="Enter the number of racers (2 - 10) : ")
         if racers.isdigit():
             racers = int(racers)
         else:
@@ -53,17 +61,8 @@ def race(colors):
                 return colors[turtles.index(racer)]
 
 
-def init_turtle():
-    global screen
-    screen = turtle.Screen()
-    screen.setup(WIDTH, HEIGHT)
-    screen.title("Racing Turtle")
-    screen.colormode(255)
-
-
 def draw_finish_line():
     referee = turtle.Turtle()
-    time.sleep(1)
     referee.speed("slow")
     referee.hideturtle()
     referee.penup()
@@ -86,8 +85,8 @@ def draw_score():
 
 
 # STARTING FLOW
-racers = get_number_of_racers()
 init_turtle()
+racers = get_number_of_racers()
 draw_finish_line()
 random.shuffle(color_list)
 colors = color_list[:racers]
